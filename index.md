@@ -5,7 +5,7 @@
 <ul>
 	{% for post in site.posts %}
 	<li>
-		<p><a href="{{ post.url }}">{{ post.title }}</a> – {% assign d = post.date | date: "%-d" %}
+		<p><a href="{{ post.url | relative_url }}">{{ post.title }}</a> – {% assign d = post.date | date: "%-d" %}
 			{%- case d %}
 			{% when "1" or "21" or "31" %}{{ d }}<sup>st</sup>
 				{% when "2" or "22" %}{{ d }}<sup>nd</sup>
@@ -24,7 +24,7 @@
 <h3>{{ tag[0] }}</h3>
 <ul>
 	{% for post in tag[1] %}
-	<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+	<li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
 	{% endfor %}
 </ul>
 {% endfor %}
