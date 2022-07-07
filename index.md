@@ -1,6 +1,30 @@
 ---
 ---
 
-# Testing
+<h2>By Date</h2>
+<ul>
+	{% for post in site.posts %}
+	<li>
+		<p><a href="{{ post.url }}">{{ post.title }}</a> – {% assign d = post.date | date: "%-d" %}
+			{%- case d %}
+			{% when "1" or "21" or "31" %}{{ d }}<sup>st</sup>
+				{% when "2" or "22" %}{{ d }}<sup>nd</sup>
+				{% when "3" or "23" %}{{ d }}<sup>rd</sup>
+				{% else %}{{ d }}<sup>th</sup>
+			{%- endcase %} {{ post.date | date: "%B %Y" }}</p>
+		<span class="postexcerpt">{{ post.excerpt }}</span>
+	</li>
+	{% endfor %}
+</ul>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<h2>By Tag</h2>
+{%- assign sorted_tags = site.tags | sort:tag[0] %}
+{%- for tag in sorted_tags %}
+<h3>{{ tag[0] }}</h3>
+<ul>
+	{% for post in tag[1] %}
+	<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+	{% endfor %}
+</ul>
+{% endfor %}

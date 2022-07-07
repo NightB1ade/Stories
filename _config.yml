@@ -1,3 +1,10 @@
-title: "NightB1ade’s Website Template"
+title: "NightB1ade’s Stories"
+description: Some real stories that make me smile
 titles_from_headings:
     enabled: false
+defaults:
+    -
+        scope:
+            path: "_posts"
+        values:
+            layout: post
